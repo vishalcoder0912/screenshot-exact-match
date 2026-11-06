@@ -212,7 +212,7 @@ function Index() {
   );
 }
 
-function Field({ label, name, type = "text", error }: { label: string; name: string; type?: string; error?: string }) {
+function Field({ label, name, type = "text", error }: { label: string; name: string; type?: string; error?: string | undefined }) {
   return (
     <label className="block">
       <span className="text-sm font-medium">{label}</span>
