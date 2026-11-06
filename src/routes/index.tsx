@@ -46,12 +46,12 @@ function Index() {
   useReveal();
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<{ name?: string; phone?: string; klass?: string }>({});
 
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
-    const err: Record<string, string> = {};
+    const err: { name?: string; phone?: string; klass?: string } = {};
     if (!String(f.get("name")).trim()) err.name = "Please enter the student's name.";
     if (!/^[0-9+\s-]{10,15}$/.test(String(f.get("phone")).trim())) err.phone = "Enter a valid 10-digit phone number.";
     if (!f.get("klass")) err.klass = "Please choose a class.";
