@@ -3,6 +3,7 @@ import { useEffect, useState, type FormEvent } from "react";
 import { BookOpen, Calculator, FlaskConical, GraduationCap, Users, Trophy, Clock, CheckCircle2, Phone, MapPin, Mail, ArrowRight, Menu, X, Lightbulb, PenLine, ClipboardCheck, LineChart } from "lucide-react";
 import hero from "@/assets/hero-students.jpg";
 import { GraduateLogo, ScrollGraduationCap } from "@/components/scroll-graduation-cap";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,10 +31,10 @@ function useReveal() {
 const nav = [["Classes", "#classes"], ["Approach", "#approach"], ["Why us", "#why"], ["Contact", "#enquiry"]];
 
 const classes = [
-  { icon: BookOpen, title: "Classes 6–8", desc: "Strong foundations in Maths, Science and English.", tags: ["All subjects", "Weekly tests"] },
-  { icon: Calculator, title: "Classes 9–10", desc: "Board-focused preparation with full syllabus coverage.", tags: ["CBSE / State", "Mock boards"] },
-  { icon: FlaskConical, title: "Classes 11–12 Science", desc: "Physics, Chemistry, Maths and Biology in depth.", tags: ["PCM / PCB", "Practicals"] },
-  { icon: GraduationCap, title: "Classes 11–12 Commerce", desc: "Accounts, Economics and Business Studies made clear.", tags: ["Concept-led", "Case studies"] },
+  { icon: BookOpen, theme: "foundation", stage: "Discover & grow", title: "Classes 6–8", desc: "Big progress begins with small moments of understanding. Build a strong foundation and a positive relationship with learning.", subjects: "Maths · Science · English", focus: ["Make everyday concepts feel clear", "Build reading and problem-solving skills", "Develop steady study habits"], encouragement: "Curiosity today. Confidence tomorrow.", tags: ["Foundations", "Study habits"] },
+  { icon: Calculator, theme: "boards", stage: "Prepare & progress", title: "Classes 9–10", desc: "Turn challenging chapters into manageable steps. Approach board preparation with clearer concepts and a calmer mindset.", subjects: "Maths · Science · English", focus: ["Connect concepts across chapters", "Practise structured exam answers", "Strengthen revision and time management"], encouragement: "Every chapter is a step forward.", tags: ["Board preparation", "Revision"] },
+  { icon: FlaskConical, theme: "science", stage: "Explore & understand", title: "Classes 11–12 Science", desc: "Go beyond memorising formulas. Explore the ideas behind science and build the reasoning skills to tackle complex questions.", subjects: "Physics · Chemistry · Maths / Biology", focus: ["Understand principles before formulas", "Build numerical and analytical thinking", "Link theory with practical applications"], encouragement: "Ask boldly. Think deeply. Keep growing.", tags: ["PCM / PCB", "Concept clarity"] },
+  { icon: GraduationCap, theme: "commerce", stage: "Think & apply", title: "Classes 11–12 Commerce", desc: "Make sense of how businesses and economies work. Build a clear understanding of commerce, one practical idea at a time.", subjects: "Accounts · Economics · Business Studies", focus: ["Develop step-by-step accounting skills", "Understand economic relationships", "Apply business ideas to real situations"], encouragement: "Clear thinking opens new possibilities.", tags: ["Commerce", "Applied learning"] },
 ];
 
 const steps = [
@@ -119,14 +120,27 @@ function Index() {
         <div className="reveal max-w-xl">
           <p className="text-sm font-semibold uppercase tracking-widest text-primary">Our classes</p>
           <h2 className="mt-3 font-display text-3xl font-bold text-primary-deep md:text-4xl">The right batch for every stage</h2>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">From the first spark of curiosity to the next big exam, Elite Study Point is about moving forward with understanding, confidence and purpose.</p>
         </div>
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {classes.map((c, i) => (
-            <article key={c.title} className="reveal group flex flex-col rounded-3xl border border-border bg-card p-7 transition duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-lift" style={{ transitionDelay: `${i * 80}ms` }}>
-              <span className="grid size-12 place-items-center rounded-2xl bg-secondary text-primary transition group-hover:bg-primary group-hover:text-primary-foreground"><c.icon className="size-6" /></span>
-              <h3 className="mt-6 text-lg font-bold">{c.title}</h3>
-              <p className="mt-2 flex-1 text-sm text-muted-foreground">{c.desc}</p>
-              <div className="mt-5 flex flex-wrap gap-2">{c.tags.map((t) => <span key={t} className="rounded-full bg-muted px-3 py-1 text-xs font-medium text-secondary-foreground">{t}</span>)}</div>
+            <article key={c.title} data-class-theme={c.theme} className="reveal class-program group flex flex-col overflow-hidden rounded-lg border bg-card text-card-foreground">
+              <div className="class-program-header p-6">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="class-program-icon grid size-12 shrink-0 place-items-center rounded-lg"><c.icon className="size-6" /></span>
+                  <span className="class-program-stage text-right text-xs font-semibold">{c.stage}</span>
+                </div>
+                <h3 className="mt-5 min-h-14 text-xl font-bold leading-7">{c.title}</h3>
+                <p className="mt-2 min-h-10 text-xs font-medium leading-5">{c.subjects}</p>
+              </div>
+              <div className="flex flex-1 flex-col p-6">
+                <p className="text-sm leading-6 text-muted-foreground">{c.desc}</p>
+                <p className="mt-6 text-xs font-bold uppercase text-foreground">Learning focus</p>
+                <ul className="mt-3 space-y-3">{c.focus.map((item) => <li key={item} className="flex gap-2 text-sm leading-5"><CheckCircle2 className="class-program-check mt-0.5 size-4 shrink-0" /><span>{item}</span></li>)}</ul>
+                <div className="mt-5 flex flex-wrap gap-2">{c.tags.map((t) => <span key={t} className="class-program-tag rounded-md px-2 py-1 text-xs font-medium">{t}</span>)}</div>
+                <p className="mb-5 mt-6 text-sm font-semibold leading-5">{c.encouragement}</p>
+                <Button asChild variant="outline" className="class-program-link mt-auto h-11 w-full justify-between"><a href="#enquiry">Enquire about classes <ArrowRight className="size-4" /></a></Button>
+              </div>
             </article>
           ))}
         </div>

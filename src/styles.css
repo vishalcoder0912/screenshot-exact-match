@@ -110,9 +110,25 @@
   --graduate-skin: oklch(0.75 0.19 52);
   --graduate-detail: oklch(0.65 0.12 182);
   --graduate-cap-edge: oklch(0.48 0.015 260);
+  --class-foundation: oklch(0.46 0.11 175);
+  --class-foundation-soft: oklch(0.95 0.04 175);
+  --class-boards: oklch(0.43 0.17 260);
+  --class-boards-soft: oklch(0.94 0.035 260);
+  --class-science: oklch(0.48 0.17 18);
+  --class-science-soft: oklch(0.95 0.035 18);
+  --class-commerce: oklch(0.45 0.09 85);
+  --class-commerce-soft: oklch(0.96 0.07 90);
 }
 
 .dark {
+  --class-foundation: oklch(0.8 0.12 175);
+  --class-foundation-soft: oklch(0.27 0.04 175);
+  --class-boards: oklch(0.8 0.09 260);
+  --class-boards-soft: oklch(0.27 0.04 260);
+  --class-science: oklch(0.8 0.1 18);
+  --class-science-soft: oklch(0.27 0.04 18);
+  --class-commerce: oklch(0.85 0.12 85);
+  --class-commerce-soft: oklch(0.27 0.04 85);
   --background: oklch(0.129 0.042 264.695);
   --foreground: oklch(0.984 0.003 247.858);
   --card: oklch(0.208 0.042 265.755);
@@ -176,6 +192,20 @@
 }
 html { scroll-behavior: smooth; }
 body { font-family: var(--font-sans); }
+
+[data-class-theme="foundation"] { --program-accent: var(--class-foundation); --program-soft: var(--class-foundation-soft); }
+[data-class-theme="boards"] { --program-accent: var(--class-boards); --program-soft: var(--class-boards-soft); }
+[data-class-theme="science"] { --program-accent: var(--class-science); --program-soft: var(--class-science-soft); }
+[data-class-theme="commerce"] { --program-accent: var(--class-commerce); --program-soft: var(--class-commerce-soft); }
+.class-program { border-color: color-mix(in oklch, var(--program-accent) 25%, var(--border)); transition: opacity .6s ease, transform .3s ease, box-shadow .3s ease; }
+.class-program-header { background: var(--program-soft); color: var(--program-accent); border-top: 4px solid var(--program-accent); }
+.class-program-icon { background: var(--card); color: var(--program-accent); }
+.class-program-check, .class-program-link { color: var(--program-accent); }
+.class-program-tag { background: var(--program-soft); color: var(--program-accent); }
+.class-program-link:hover { background: var(--program-soft); color: var(--program-accent); border-color: var(--program-accent); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .class-program.in:hover { transform: translateY(-8px); box-shadow: var(--shadow-soft); }
+}
 
 .graduate-logo { position: relative; flex-shrink: 0; }
 .graduate-logo-start { width: 144px; height: 144px; margin-bottom: 12px; }
