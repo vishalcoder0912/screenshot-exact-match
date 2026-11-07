@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { BookOpen, Calculator, FlaskConical, GraduationCap, Users, Trophy, Clock, CheckCircle2, Phone, MapPin, Mail, ArrowRight, Menu, X, Lightbulb, PenLine, ClipboardCheck, LineChart } from "lucide-react";
 import hero from "@/assets/hero-students.jpg";
+import { GraduateLogo, ScrollGraduationCap } from "@/components/scroll-graduation-cap";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -61,6 +62,7 @@ function Index() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <ScrollGraduationCap />
       <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg">
         <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5">
           <a href="#" className="flex items-center gap-2">
@@ -85,6 +87,7 @@ function Index() {
         <div className="absolute -right-40 -top-40 size-[520px] rounded-full bg-secondary blur-3xl" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-2 md:py-24">
           <div className="animate-rise">
+            <GraduateLogo position="start" />
             <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-1.5 text-xs font-semibold text-secondary-foreground">
               <span className="size-2 rounded-full bg-primary" /> Admissions open for 2026–27
             </span>
@@ -207,7 +210,10 @@ function Index() {
         </div>
       </section>
 
-      <footer className="border-t border-border py-8 text-center text-sm text-muted-foreground">© 2026 Elite Study Point. All rights reserved.</footer>
+      <footer className="border-t border-border py-8 text-center text-sm text-muted-foreground">
+        <GraduateLogo position="end" />
+        <p className="mt-5">© 2026 Elite Study Point. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
