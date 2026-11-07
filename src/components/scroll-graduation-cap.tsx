@@ -38,7 +38,8 @@ export function ScrollGraduationCap() {
       frame = 0;
       const a = start.getBoundingClientRect();
       const b = end.getBoundingClientRect();
-      const landingScroll = Math.max(1, b.top + window.scrollY - window.innerHeight * 0.65);
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const landingScroll = Math.max(1, Math.min(maxScroll, b.top + window.scrollY - window.innerHeight * 0.65));
       const progress = Math.min(1, Math.max(0, window.scrollY / landingScroll));
       const mix = (from: number, to: number) => from + (to - from) * progress;
       const width = mix(a.width, b.width);
