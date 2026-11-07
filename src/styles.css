@@ -105,6 +105,11 @@
   --gradient-deep: linear-gradient(160deg, var(--primary-deep), var(--primary));
   --shadow-soft: 0 10px 30px -12px color-mix(in oklab, var(--primary) 25%, transparent);
   --shadow-lift: 0 24px 50px -18px color-mix(in oklab, var(--primary) 40%, transparent);
+  --graduate-ink: oklch(0.15 0 0);
+  --graduate-paper: oklch(1 0 0);
+  --graduate-skin: oklch(0.75 0.19 52);
+  --graduate-detail: oklch(0.65 0.12 182);
+  --graduate-cap-edge: oklch(0.48 0.015 260);
 }
 
 .dark {
@@ -171,3 +176,21 @@
 }
 html { scroll-behavior: smooth; }
 body { font-family: var(--font-sans); }
+
+.graduate-logo { position: relative; flex-shrink: 0; }
+.graduate-logo-start { width: 144px; height: 144px; margin-bottom: 12px; }
+.graduate-logo-end { width: 260px; height: 260px; margin-inline: auto; }
+.graduate-paper { fill: var(--graduate-paper); stroke: var(--graduate-ink); stroke-width: 5; }
+.graduate-ink { fill: var(--graduate-ink); }
+.graduate-outline { stroke: var(--graduate-ink); }
+.graduate-skin { fill: var(--graduate-skin); stroke: var(--graduate-ink); stroke-width: 3; }
+.graduate-shirt { fill: var(--graduate-paper); }
+.graduate-doodles { stroke: var(--graduate-detail); }
+.graduate-cap-edge { stroke: var(--graduate-cap-edge); }
+.graduate-name { fill: var(--graduate-ink); font: 700 21px var(--font-sans); letter-spacing: 0; }
+.graduate-cap-slot { position: absolute; left: 23%; top: 12%; width: 54%; aspect-ratio: 2; pointer-events: none; }
+.scroll-graduation-cap { position: fixed; left: 0; top: 0; width: 78px; aspect-ratio: 2; z-index: 40; pointer-events: none; visibility: hidden; will-change: transform, width; transform-origin: center; }
+@media (prefers-reduced-motion: reduce) {
+  .scroll-graduation-cap { display: none; }
+  html { scroll-behavior: auto; }
+}
